@@ -42,11 +42,20 @@ test("clicking button increments counter in display", () => {
   // pass in counter varaible (makes this test completely isolated)
   const counter = 50;
   const wrapper = setup(null, { counter });
-  // find button and click
-  const button = findByTestAttr(wrapper, "increment-button");
-  button.simulate("click");
+  // find increment button and click
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+  incrementButton.simulate("click");
   // find display and test value
   const counterDisplay = findByTestAttr(wrapper, "counter-display");
   // toContain instead of toBe makes sure that it is not dependant on the exact text to pass
   expect(counterDisplay.text()).toContain(counter + 1);
+});
+
+test("Clicking decrement button decrements counter", () => {
+  const counter = 50;
+  const wrapper = setup(null, { counter });
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+  decrementButton.simulate("click");
+  const counterDisplay = findByTestAttr(wrapper, "counter-display");
+  expect(counterDisplay.text()).toContain(counter - 1);
 });
