@@ -20,13 +20,17 @@ test("renders without error", () => {
 });
 test("renders increment button", () => {
   const wrapper = setup();
-  const button = findByTestAttr(wrapper, "increment-button");
-  expect(button.length).toBe(1);
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+  expect(incrementButton.length).toBe(1);
 });
 test("renders counter display", () => {
   const wrapper = setup();
-  const counter = findByTestAttr(wrapper, "counter-display");
-  expect(counter.length).toBe(1);
+  const counterDisplay = findByTestAttr(wrapper, "counter-display");
+  expect(counterDisplay.length).toBe(1);
 });
-test("counter starts at 0", () => {});
+test("counter starts at 0", () => {
+  const wrapper = setup();
+  const initialCounterState = wrapper.state("counter");
+  expect(initialCounterState).toBe(0);
+});
 test("clicking button increments counter in display", () => {});
