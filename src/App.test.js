@@ -9,20 +9,24 @@ import App from "./App";
 // adapts enzyme to work with correct react version
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
+const setup = (props = {}, state = null) => shallow(<App {...props} />);
+
+const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
+
 test("renders without error", () => {
-  const wrapper = shallow(<App />);
-  const appComponent = wrapper.find("[data-test='component-app']");
-  expect(appComponent.length).toBe(1);
+  const wrapper = setup();
+  const app = findByTestAttr(wrapper, "component-app");
+  expect(app.length).toBe(1);
 });
 test("renders increment button", () => {
-  const wrapper = shallow(<App />);
-  const appComponent = wrapper.find("[data-test='increment-button']");
-  expect(appComponent.length).toBe(1);
+  const wrapper = setup();
+  const button = findByTestAttr(wrapper, "increment-button");
+  expect(button.length).toBe(1);
 });
 test("renders counter display", () => {
-  const wrapper = shallow(<App />);
-  const appComponent = wrapper.find("[data-test='counter-display']");
-  expect(appComponent.length).toBe(1);
+  const wrapper = setup();
+  const counter = findByTestAttr(wrapper, "counter-display");
+  expect(counter.length).toBe(1);
 });
 test("counter starts at 0", () => {});
 test("clicking button increments counter in display", () => {});
