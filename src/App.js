@@ -9,8 +9,13 @@ class App extends Component {
   render() {
     return (
       <div data-test="component-app">
-        <h1 data-test="counter-display">COUNTER:</h1>
-        <button data-test="increment-button">INCREMENT</button>
+        <h1 data-test="counter-display">COUNTER: {this.state.counter}</h1>
+        <button
+          data-test="increment-button"
+          onClick={() => this.setState({ counter: this.state.counter + 1 })}
+        >
+          INCREMENT
+        </button>
       </div>
     );
   }

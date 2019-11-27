@@ -9,7 +9,12 @@ import App from "./App";
 // adapts enzyme to work with correct react version
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-const setup = (props = {}, state = null) => shallow(<App {...props} />);
+const setup = (props = {}, state = null) => {
+  const wrapper = shallow(<App {...props} />);
+  // use setState to set state of component being tested
+  if (state) wrapper.setState(state);
+  return wrapper;
+};
 
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
