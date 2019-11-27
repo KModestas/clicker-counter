@@ -38,4 +38,15 @@ test("counter starts at 0", () => {
   const initialCounterState = wrapper.state("counter");
   expect(initialCounterState).toBe(0);
 });
-test("clicking button increments counter in display", () => {});
+test("clicking button increments counter in display", () => {
+  // pass in counter varaible (makes this test completely isolated)
+  const counter = 50;
+  const wrapper = setup(null, { counter });
+  // find button and click
+  const button = findByTestAttr(wrapper, "increment-button");
+  button.simulate("click");
+  // find display and test value
+  const counterDisplay = findByTestAttr(wrapper, "counter-display");
+  // toContain instead of toBe makes sure that it is not dependant on the exact text to pass
+  expect(counterDisplay.text()).toContain(counter + 1);
+});
