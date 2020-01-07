@@ -3,7 +3,7 @@ import Enzyme, { shallow } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 import App from "./App";
 
-// enzyme gives you ultilies to work with react such as shallowing rendering and jQuery like DOM manipulation
+// enzyme gives you ultilies to work with react such as shallow rendering and jQuery like DOM manipulation
 // jest gives you the testing and assertion capabilities
 
 // adapts enzyme to work with correct react version
