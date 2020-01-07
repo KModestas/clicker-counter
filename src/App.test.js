@@ -18,6 +18,7 @@ const setup = (props = {}, state = null) => {
 
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
+// can be 'it' or 'test'
 test("renders without error", () => {
   const wrapper = setup();
   const app = findByTestAttr(wrapper, "component-app");
