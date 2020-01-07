@@ -16,6 +16,8 @@ const setup = (props = {}, state = null) => {
   return wrapper;
 };
 
+// you can console.log(wrapper.debug()) to get a stringified version of your wrapper
+
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
 // can be 'it' or 'test'
