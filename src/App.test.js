@@ -11,7 +11,6 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 const setup = (props = {}, state = null) => {
   const wrapper = shallow(<App {...props} />);
-  // use setState to set state of component being tested
   if (state) wrapper.setState(state);
   return wrapper;
 };
@@ -75,7 +74,7 @@ describe("Decrement", () => {
     // find button and click
     const button = findByTestAttr(wrapper, "decrement-button");
     button.simulate("click");
-    // wrapper.update();
+    wrapper.update();
 
     // find display and test value
     const counterDisplay = findByTestAttr(wrapper, "counter-display");
@@ -87,6 +86,7 @@ describe("Decrement", () => {
     const errorMsg = findByTestAttr(wrapper, "error-message");
     expect(errorMsg.length).toBe(0);
   });
+
   describe("counter is 0 and decrement is clicked", () => {
     // using a describe here so I can use a "beforeEach" for shared setup
 
@@ -96,11 +96,10 @@ describe("Decrement", () => {
     beforeEach(() => {
       // no need to set counter value here; default value of 0 is good
       wrapper = setup();
-
       // find button and click
       const button = findByTestAttr(wrapper, "decrement-button");
       button.simulate("click");
-      // wrapper.update();
+      wrapper.update();
     });
     test("error shows", () => {
       // check the class of the error message
